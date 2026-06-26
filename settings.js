@@ -5,15 +5,15 @@ const fs = require('fs')
 const chalk = require('chalk')
 
 //contact details
-global.ownernomer = "2348165846414"
-global.ownername = "𝑻𝒐𝒙𝒙𝒊𝒄 𝑩𝒐𝒚"
+global.ownernomer = "255724131765"
+global.ownername = "nexa"
 global.ytname = "YT: ToxxicTech"
 global.socialm = "GitHub: Toxic1239"
-global.location = "Nigeria"
+global.location = "tanzania"
 
-global.ownernumber = '2348165846414'  //creator number
-global.ownername = '𝑻𝒐𝒙𝒙𝒊𝒄 𝑻𝒆𝒄𝒉' //owner name
-global.botname = '𝒁𝒆𝒏𝒐𝒏 𝒁𝒐𝒈𝒓𝒂𝒕𝒊𝒔' //name of the bot
+global.ownernumber = '255724131765'  //creator number
+global.ownername = 'nexa' //owner name
+global.botname = 'nexa' //name of the bot
 
 // MENU TYPE
 /* Rules
@@ -29,7 +29,7 @@ global.typemenu = 'v1'
 
 
 //sticker details
-global.packname = '𝒁𝒆𝒏𝒐𝒏 𝑾𝒊𝒍𝒍 𝑪𝒓𝒂𝒔𝒉 𝑨𝒍𝒍'
+global.packname = 'nexa 𝑾𝒊𝒍𝒍 𝑪𝒓𝒂𝒔𝒉 𝑨𝒍𝒍'
 global.author = '𝑴𝒂𝒅𝒆 𝑩𝒚 𝑻𝒐𝒙𝒙𝒊𝒄'
 
 //console view/theme
