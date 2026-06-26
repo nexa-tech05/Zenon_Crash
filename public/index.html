@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenon Crash Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4caf50;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .endpoint {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+        
+        .method-get {
+            background-color: #61affe;
+            color: white;
+        }
+        
+        .method-post {
+            background-color: #49cc90;
+            color: white;
+        }
+        
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            color: #333;
+            margin: 5px 0;
+        }
+        
+        .endpoint-desc {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0 0 0;
+        }
+        
+        .form-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            background-color: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #764ba2;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .response {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            border-left: 4px solid #49cc90;
+            display: none;
+        }
+        
+        .response.show {
+            display: block;
+        }
+        
+        .response.error {
+            border-left-color: #f93e3e;
+            background: #ffe5e5;
+        }
+        
+        .response-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .response-content {
+            font-family: 'Courier New', monospace;
+            color: #666;
+            font-size: 13px;
+            word-break: break-all;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Zenon Crash Server</h1>
+        <div class="status">
+            <div class="status-dot"></div>
+            <span>Server is running</span>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Available Endpoints</h2>
+            
+            <div class="endpoint">
+                <span class="endpoint-method method-get">GET</span>
+                <div class="endpoint-path">/api/health</div>
+                <div class="endpoint-desc">Check if the server is running</div>
+            </div>
+            
+            <div class="endpoint">
+                <span class="endpoint-method method-get">GET</span>
+                <div class="endpoint-path">/api/data</div>
+                <div class="endpoint-desc">Get server welcome message and timestamp</div>
+            </div>
+            
+            <div class="endpoint">
+                <span class="endpoint-method method-post">POST</span>
+                <div class="endpoint-path">/api/submit</div>
+                <div class="endpoint-desc">Submit a message to the server</div>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h2>✉️ Test API</h2>
+            
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" placeholder="Enter your message here..." rows="3"></textarea>
+            </div>
+            
+            <button onclick="submitMessage()">Send Message</button>
+            
+            <div id="response" class="response">
+                <div class="response-label">Response:</div>
+                <div class="response-content" id="responseContent"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Zenon Crash Server v3.0.0 | Made with ❤️</p>
+        </div>
+    </div>
+    
+    <script>
+        async function submitMessage() {
+            const message = document.getElementById('message').value;
+            const responseDiv = document.getElementById('response');
+            const responseContent = document.getElementById('responseContent');
+            
+            if (!message.trim()) {
+                responseDiv.classList.add('error', 'show');
+                responseContent.textContent = 'Error: Please enter a message';
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const data = await response.json();
+                
+                responseDiv.classList.remove('error');
+                responseDiv.classList.add('show');
+                responseContent.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                responseDiv.classList.add('error', 'show');
+                responseContent.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        // Check server status on page load
+        async function checkHealth() {
+            try {
+                const response = await fetch('/api/health');
+                if (response.ok) {
+                    console.log('✅ Server is running');
+                }
+            } catch (error) {
+                console.error('❌ Server health check failed:', error);
+            }
+        }
+        
+        checkHealth();
+    </script>
+</body>
+</html>
